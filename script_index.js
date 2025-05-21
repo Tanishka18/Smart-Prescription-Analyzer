@@ -6,7 +6,6 @@ document.getElementById("analyzeBtn").addEventListener("click", () => {
     alert("Please upload a prescription image.");
     return;
   }
-
   document.getElementById("loading").classList.remove("hidden");
   document.getElementById("results").classList.add("hidden");
 
@@ -44,4 +43,5 @@ document.getElementById("analyzeBtn").addEventListener("click", () => {
       document.getElementById("alerts").classList.add("hidden");
     }
   }, 2000);
+  window.location.href = 'result.html';
 });

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prescription Analysis - Smart Rx</title>
+  <link rel="stylesheet" href="style_result.css"/>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+          <path d="M12 5 8.5 9.5"></path>
+          <path d="m16 9-2 2"></path>
+          <path d="M12 13v5"></path>
+        </svg>
+        <span>Smart Rx</span>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#features">Features</a>
+        <a href="index.html#about">About Us</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="login.html" class="btn" style="margin-left: 1rem;">Login</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Analysis Container -->
+  <div class="analysis-container">
+    <h1>Prescription Analysis Results</h1>
+    
+    <!-- Prescription Preview -->
+    <div class="prescription-preview">
+      <img src="/api/placeholder/250/320" alt="Prescription Image" class="prescription-image">
+      <div class="prescription-summary">
+        <h3>Prescription Summary</h3>
+        <p><strong>Date Analyzed:</strong> <span id="analysisDate">May 21, 2025</span></p>
+        <p><strong>Medications Detected:</strong> <span id="medicationCount">4</span></p>
+        <p><strong>Potential Issues:</strong> <span id="issuesCount">2</span></p>
+        <p class="medication-notes">This analysis is provided for informational purposes only and doesn't replace professional medical advice. Always consult with your healthcare provider.</p>
+      </div>
+    </div>
+    
+    <!-- Analysis Tabs -->
+    <div class="analysis-tabs">
+      <button class="tab-button active" data-tab="medications">Medications</button>
+      <button class="tab-button" data-tab="interactions">Drug Interactions</button>
+      <button class="tab-button" data-tab="alerts">Alerts & Warnings</button>
+      <button class="tab-button" data-tab="recommendations">Recommendations</button>
+    </div>
+    
+    <!-- Tabs Content -->
+    <div id="medications" class="tab-content active">
+      <h2>Detected Medications</h2>
+      <div class="medication-grid">
+        <!-- Medication 1 -->
+        <div class="medication-card">
+          <span class="medication-badge badge-verified">Verified</span>
+          <h4>Lisinopril</h4>
+          <div class="medication-details">
+            <p><strong>Dosage:</strong> 10mg</p>
+            <p><strong>Frequency:</strong> Once daily</p>
+            <p><strong>Purpose:</strong> Blood pressure control</p>
+          </div>
+          <div class="medication-notes">
+            Common ACE inhibitor used to treat high blood pressure and heart failure.
+          </div>
+        </div>
+        
+        <!-- Medication 2 -->
+        <div class="medication-card">
+          <span class="medication-badge badge-verified">Verified</span>
+          <h4>Simvastatin</h4>
+          <div class="medication-details">
+            <p><strong>Dosage:</strong> 20mg</p>
+            <p><strong>Frequency:</strong> Once daily at bedtime</p>
+            <p><strong>Purpose:</strong> Cholesterol management</p>
+          </div>
+          <div class="medication-notes">
+            Statin medication that helps lower cholesterol levels in the blood.
+          </div>
+        </div>
+        
+        <!-- Medication 3 -->
+        <div class="medication-card">
+          <span class="medication-badge badge-warning">Warning</span>
+          <h4>Potassium Supplement</h4>
+          <div class="medication-details">
+            <p><strong>Dosage:</strong> 10 mEq</p>
+            <p><strong>Frequency:</strong> Once daily with food</p>
+            <p><strong>Purpose:</strong> Electrolyte supplement</p>
+          </div>
+          <div class="medication-notes">
+            <strong>Warning:</strong> May interact with Lisinopril, increasing risk of high potassium levels.
+          </div>
+        </div>
+        
+        <!-- Medication 4 -->
+        <div class="medication-card">
+          <span class="medication-badge badge-verified">Verified</span>
+          <h4>Aspirin</h4>
+          <div class="medication-details">
+            <p><strong>Dosage:</strong> 81mg</p>
+            <p><strong>Frequency:</strong> Once daily</p>
+            <p><strong>Purpose:</strong> Blood thinning</p>
+          </div>
+          <div class="medication-notes">
+            Low-dose aspirin commonly used to prevent blood clots and reduce heart attack risk.
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="interactions" class="tab-content">
+      <h2>Drug Interaction Analysis</h2>
+      <p>The chart below shows potential interactions between your medications:</p>
+      
+      <table class="interaction-matrix">
+        <thead>
+          <tr>
+            <th>Medication</th>
+            <th>Lisinopril</th>
+            <th>Simvastatin</th>
+            <th>Potassium</th>
+            <th>Aspirin</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Lisinopril</th>
+            <td>-</td>
+            <td><div class="interaction-cell interaction-none"></div></td>
+            <td><div class="interaction-cell interaction-severe"></div></td>
+            <td><div class="interaction-cell interaction-minor"></div></td>
+          </tr>
+          <tr>
+            <th>Simvastatin</th>
+            <td><div class="interaction-cell interaction-none"></div></td>
+            <td>-</td>
+            <td><div class="interaction-cell interaction-none"></div></td>
+            <td><div class="interaction-cell interaction-none"></div></td>
+          </tr>
+          <tr>
+            <th>Potassium</th>
+            <td><div class="interaction-cell interaction-severe"></div></td>
+            <td><div class="interaction-cell interaction-none"></div></td>
+            <td>-</td>
+            <td><div class="interaction-cell interaction-none"></div></td>
+          </tr>
+          <tr>
+            <th>Aspirin</th>
+            <td><div class="interaction-cell interaction-minor"></div></td>
+            <td><div class="interaction-cell interaction-none"></div></td>
+            <td><div class="interaction-cell interaction-none"></div></td>
+            <td>-</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <div class="legend">
+        <div class="legend-item">
+          <div class="legend-color interaction-none"></div>
+          <span>No known interaction</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color interaction-minor"></div>
+          <span>Minor interaction</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color interaction-moderate"></div>
+          <span>Moderate interaction</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color interaction-severe"></div>
+          <span>Severe interaction</span>
+        </div>
+      </div>
+      
+      <div class="alert-container">
+        <h3>Detailed Interaction Information</h3>
+        
+        <div class="alert-item">
+          <div class="alert-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+              <line x1="12" y1="9" x2="12" y2="13"></line>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+          </div>
+          <div class="alert-content">
+            <h4>Lisinopril + Potassium: Severe Interaction</h4>
+            <p>Lisinopril can increase potassium levels in the body. Taking a potassium supplement while on Lisinopril may lead to dangerously high potassium levels (hyperkalemia). This can cause symptoms like muscle weakness, abnormal heart rhythms, and in severe cases, cardiac arrest.</p>
+          </div>
+        </div>
+        
+        <div class="alert-item" style="background-color: #fff3e0; border-left-color: #fb8c00;">
+          <div class="alert-icon" style="color: #fb8c00;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+              <line x1="12" y1="9" x2="12" y2="13"></line>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+          </div>
+          <div class="alert-content">
+            <h4>Lisinopril + Aspirin: Minor Interaction</h4>
+            <p>The combination may slightly reduce the blood pressure-lowering effect of Lisinopril. Regular low-dose aspirin (81mg) typically has minimal impact, but higher doses may be more significant. Monitor blood pressure regularly.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="alerts" class="tab-content">
+      <h2>Alerts & Warnings</h2>
+      
+      <div class="alert-item">
+        <div class="alert-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+            <line x1="12" y1="9" x2="12" y2="13"></line>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+        </div>
+        <div class="alert-content">
+          <h4>Hyperkalemia Risk</h4>
+          <p>Lisinopril and Potassium supplements may increase risk of hyperkalemia (high potassium levels). Symptoms include muscle weakness, fatigue, numbness, and cardiac arrhythmias. Consider discontinuing the potassium supplement or monitoring potassium levels closely.</p>
+        </div>
+      </div>
+      
+      <div class="alert-item" style="background-color: #f0f9ff; border-left-color: #0ea5e9;">
+        <div class="alert-icon" style="color: #0ea5e9;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+        </div>
+        <div class="alert-content">
+          <h4>Simvastatin Timing Note</h4>
+          <p>Simvastatin is most effective when taken at night or before bedtime, as cholesterol production in the liver is highest overnight. Confirm that you're taking this medication in the evening as prescribed.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div id="recommendations" class="tab-content">
+      <h2>Recommendations</h2>
+      
+      <ol>
+        <li>
+          <h4>Consult with your healthcare provider about the potassium supplement</h4>
+          <p>Due to the severe interaction risk with Lisinopril, discuss with your doctor whether the potassium supplement is necessary. They may recommend discontinuing it or adjusting the dosage.</p>
+        </li>
+        <li>
+          <h4>Regular blood tests</h4>
+          <p>Schedule regular blood tests to monitor your potassium levels, kidney function, and cholesterol levels while on this medication regimen.</p>
+        </li>
+        <li>
+          <h4>Blood pressure monitoring</h4>
+          <p>Monitor your blood pressure regularly at home to ensure the Lisinopril is working effectively, especially given the minor interaction with aspirin.</p>
+        </li>
+        <li>
+          <h4>Timing adjustments</h4>
+          <p>Ensure you're taking Simvastatin at night for maximum effectiveness, and consider spacing out the timing of your medications throughout the day.</p>
+        </li>
+        <li>
+          <h4>Stay hydrated</h4>
+          <p>Maintain adequate hydration, especially while taking Lisinopril, to support kidney function and prevent dehydration.</p>
+        </li>
+      </ol>
+      
+      <div class="medication-notes" style="margin-top: 2rem;">
+        <p><strong>Important:</strong> These recommendations are generated automatically based on known medication interactions and best practices. Always consult with your healthcare provider before making any changes to your medication regimen.</p>
+      </div>
+    </div>
+    
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <a href="index.html" class="btn btn-secondary">Back to Home</a>
+      <button id="downloadPdfBtn" class="btn">Download PDF Report</button>
+    </div>
+    
+    <p class="pdf-note">PDF reports include all analysis details and can be shared with your healthcare provider.</p>
+  </div>
+  <script src="script_result.js"></script>
+</body>
+</html>
