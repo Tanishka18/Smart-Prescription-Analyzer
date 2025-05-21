@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Prescription Checker</title>
+  <link rel="stylesheet" href="styleindex.css"/>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+          <path d="M12 5 8.5 9.5"></path>
+          <path d="m16 9-2 2"></path>
+          <path d="M12 13v5"></path>
+        </svg>
+        <span>Smart Rx</span>
+      </div>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#about">About Us</a>
+        <a href="#contact">Contact</a>
+        <a href="login.html" class="btn" style="margin-left: 1rem;">Login</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <div id="home" class="hero">
+    <h1>Smart Prescription Checker</h1>
+    <p>Upload your prescription and get instant analysis for potential medication interactions, dosage issues, and safety concerns.</p>
+  </div>
+
+  <!-- Upload Section -->
+  <div class="section">
+    <div class="upload-container">
+      <label for="imageInput" class="upload-area" id="dropArea">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="17 8 12 3 7 8"></polyline>
+          <line x1="12" y1="3" x2="12" y2="15"></line>
+        </svg>
+        <h3>Drag and drop your prescription image here</h3>
+        <p>or click to browse files</p>
+        <p class="file-info">Supported formats: JPG, PNG, PDF - Max size: 10MB</p>
+      </label>
+      <input type="file" id="imageInput" accept="image/*,.pdf" class="file-input">
+      
+      <div class="upload-controls">
+        <button id="analyzeBtn" class="btn btn-lg">Analyze Prescription</button>
+        <button id="clearBtn" class="btn btn-lg btn-secondary hidden">Clear & Start Over</button>
+      </div>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div id="loading" class="loading hidden">
+      <div class="spinner"></div>
+      <p>Analyzing your prescription...</p>
+    </div>
+
+    <!-- Results Section -->
+    <div id="results" class="results-container hidden">
+      <div class="results-header">
+        <h2>Analysis Results</h2>
+      </div>
+      <div class="results-body">
+        <h3>Extracted Medications</h3>
+        <ul id="medicationsList" class="medication-list">
+          <!-- Example medication item (will be populated by JS) -->
+          <li class="medication-item">
+            <div class="medication-info">
+              <span class="medication-name">Lisinopril</span>
+              <span class="medication-details">10mg, once daily</span>
+            </div>
+            <span class="medication-badge">Verified</span>
+          </li>
+        </ul>
+        
+        <div id="alerts" class="alerts-container hidden">
+          <h3>Important Alerts</h3>
+          <div id="flaggedList">
+            <!-- Example alert item (will be populated by JS) -->
+            <div class="alert-item">
+              <div class="alert-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+                  <line x1="12" y1="9" x2="12" y2="13"></line>
+                  <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+              </div>
+              <div class="alert-content">
+                <h4>Potential Interaction Detected</h4>
+                <p>Lisinopril and Potassium supplements may increase risk of hyperkalemia (high potassium levels).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Features Section -->
+  <div id="features" class="section">
+    <h2 style="text-align: center; margin-bottom: 3rem;">Why Use Smart Prescription Checker?</h2>
+    <div class="features">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+        </div>
+        <h3>Drug Interaction Alerts</h3>
+        <p>Identify potential dangerous drug interactions before they cause problems. Our system checks against a comprehensive database of known interactions.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 20h9"></path>
+            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+          </svg>
+        </div>
+        <h3>Smart Dosage Analysis</h3>
+        <p>Our system verifies medication dosages against standard recommendations to ensure you're taking the right amount for your condition.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+          </svg>
+        </div>
+        <h3>Medical History Tracking</h3>
+        <p>Keep track of your medications over time and maintain a comprehensive digital record of your prescription history.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <div id="about" class="section">
+    <div class="about-section">
+      <div class="about-image">
+        <img src="/api/placeholder/600/400" alt="Medical professionals reviewing prescriptions">
+      </div>
+      <div class="about-content">
+        <h2>About Smart Prescription Checker</h2>
+        <p>Founded by a team of healthcare professionals and technology experts, Smart Prescription Checker was created to address the growing concern of medication errors and adverse drug events.</p>
+        <p>Our mission is to empower patients with the tools they need to verify their prescriptions and understand potential risks, while also providing healthcare providers with additional verification to enhance patient safety.</p>
+        
+        <div class="stats">
+          <div class="stat-item">
+            <div class="stat-value">99%</div>
+            <div class="stat-label">Accuracy Rate</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">500K+</div>
+            <div class="stat-label">Prescriptions Analyzed</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">10K+</div>
+            <div class="stat-label">Potential Issues Caught</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Section -->
+  <div id="contact" class="section">
+    <h2 style="text-align: center; margin-bottom: 3rem;">Get In Touch</h2>
+    <div class="contact-section">
+      <div class="contact-form">
+        <form action="#" method="POST" id="contactForm">
+          <div class="form-group">
+            <label for="name" class="form-label">Your Name</label>
+            <input type="text" id="name" name="name" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" id="email" name="email" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="subject" class="form-label">Subject</label>
+            <input type="text" id="subject" name="subject" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="message" class="form-label">Message</label>
+            <textarea id="message" name="message" class="form-control" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-lg">Send Message</button>
+        </form>
+      </div>
+      
+      <div class="contact-info">
+        <h3 style="margin-bottom: 2rem;">Contact Information</h3>
+        
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+          </div>
+          <div>
+            <h4>Phone</h4>
+            <p>+1 (555) 123-4567</p>
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </div>
+          <div>
+            <h4>Email</h4>
+            <p>support@smartprescriptionchecker.com</p>
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </div>
+          <div>
+            <h4>Office Address</h4>
+            <p>123 Health Street<br>MedCity, USA 12345</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="scriptindex.js"></script
+</body>
