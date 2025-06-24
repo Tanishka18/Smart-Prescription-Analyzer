@@ -7,7 +7,13 @@ import pandas as pd
 import tkinter as tk
 from tkinter import filedialog
 
-pytesseract.pytesseract.tesseract_cmd = "C:/Program Files/Tesseract-OCR/tesseract.exe"
+# Get the directory where the script is located
+script_dir = os.path.dirname(os.path.abspath(__file__))
+pytesseract.pytesseract.tesseract_cmd = os.path.join(script_dir, "tesseract", "tesseract.exe")
+
+# Use paths relative to the script directory
+json_folder = os.path.join(script_dir, "drug-labels")
+csv_path = os.path.join(script_dir, "db_drug_interactions.csv")
 
 def load_all_drug_names(json_folder):
     drug_names = set()
@@ -53,6 +59,7 @@ def check_ddi(drugs_found, ddi_database):
                 risky_pairs.append(pair)
     return risky_pairs
 
+# GUI to select image file
 root = tk.Tk()
 root.withdraw()
 file_path = filedialog.askopenfilename(
@@ -61,9 +68,6 @@ file_path = filedialog.askopenfilename(
 )
 
 if file_path:
-    json_folder = "C:/Users/aadya/Desktop/ocr/data"
-    csv_path = "C:/Users/aadya/Desktop/ocr/ddi_pairs/db_drug_interactions.csv"
-
     drug_list = load_all_drug_names(json_folder)
     ddi_database = load_ddi_pairs(csv_path)
 
@@ -76,3 +80,5 @@ if file_path:
     print("Risky Drug Pairs (DDIs):", risky_pairs if risky_pairs else "None found ✅")
 else:
     print("No file selected.")
+
+print("done")

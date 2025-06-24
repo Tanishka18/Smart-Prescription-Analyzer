@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prescription Analysis - Smart Rx</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style_result.css') }}"/>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+          <path d="M12 5 8.5 9.5"></path>
+          <path d="m16 9-2 2"></path>
+          <path d="M12 13v5"></path>
+        </svg>
+        <span>Smart Rx</span>
+      </div>
+      <div class="nav-links">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('index') }}#features">Features</a>
+        <a href="{{ url_for('index') }}#about">About Us</a>
+        <a href="{{ url_for('index') }}#contact">Contact</a>
+        <a href="{{ url_for('login') }}" class="btn" style="margin-left: 1rem;">Login</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Analysis Container -->
+  <div class="analysis-container">
+    <h1>Prescription Analysis Results</h1>
+
+    <!-- Prescription Preview -->
+    <div class="prescription-preview">
+      <img src="{{ url_for('static', filename='uploads/' ~ image_filename) }}" alt="Prescription Image" class="prescription-image">
+      <div class="prescription-summary">
+        <h3>Prescription Summary</h3>
+        <p><strong>Date Analyzed:</strong> <span>{{ current_date }}</span></p>
+        <p><strong>Medications Detected:</strong> <span>{{ extracted_medicines|length }}</span></p>
+        <p><strong>Potential Issues:</strong> <span>{{ warnings|length }}</span></p>
+        <p class="medication-notes">This analysis is provided for informational purposes only and doesn't replace professional medical advice. Always consult with your healthcare provider.</p>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="analysis-tabs">
+      <button class="tab-button active" data-tab="medications">Medications</button>
+      <button class="tab-button" data-tab="interactions">Drug Interactions</button>
+      <button class="tab-button" data-tab="alerts">Alerts & Warnings</button>
+      <button class="tab-button" data-tab="recommendations">Recommendations</button>
+    </div>
+
+    <!-- Medications Tab -->
+    <div id="medications" class="tab-content active">
+      <h2>Detected Medications</h2>
+      <div class="medication-grid">
+        {% for med in extracted_medicines %}
+        <div class="medication-card">
+          <span class="medication-badge badge-verified">Verified</span>
+          <h4>{{ med }}</h4>
+          <div class="medication-details">
+            <p><strong>Dosage:</strong> Not specified</p>
+            <p><strong>Frequency:</strong> Not specified</p>
+            <p><strong>Purpose:</strong> General use</p>
+          </div>
+          <div class="medication-notes">
+            Placeholder note: This medication was identified from the prescription. Specific usage details not available.
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Interactions Tab -->
+    <div id="interactions" class="tab-content">
+      <h2>Drug Interaction Analysis</h2>
+      {% if warnings %}
+        <ul>
+          {% for warning in warnings %}
+          <li><strong>Warning:</strong> Interaction between {{ warning }}</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>No known risky drug interactions detected.</p>
+      {% endif %}
+    </div>
+
+    <!-- Alerts Tab -->
+    <div id="alerts" class="tab-content">
+      <h2>Alerts & Warnings</h2>
+      {% if warnings %}
+        {% for warning in warnings %}
+        <div class="alert-item">
+          <div class="alert-icon">⚠️</div>
+          <div class="alert-content">
+            <h4>Potential Interaction: {{ warning }}</h4>
+            <p>This drug combination may cause unwanted effects. Consult a healthcare professional for guidance.</p>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <p>No alerts or warnings to display.</p>
+      {% endif %}
+    </div>
+
+    <!-- Recommendations Tab -->
+    <div id="recommendations" class="tab-content">
+      <h2>Recommendations</h2>
+      <ol>
+        <li>Review identified medications and verify with a licensed pharmacist or doctor.</li>
+        <li>If warnings are shown, consult your doctor before continuing this combination.</li>
+        <li>Maintain regular health checkups and blood tests as advised.</li>
+        <li>Store this report and share it with your healthcare provider.</li>
+      </ol>
+    </div>
+
+    <!-- Buttons -->
+    <div class="action-buttons">
+      <a href="{{ url_for('index') }}" class="btn btn-secondary">Analyze Another</a>
+      <button id="downloadPdfBtn" class="btn">Download PDF Report</button>
+    </div>
+
+    <p class="pdf-note">PDF reports include all analysis details and can be shared with your healthcare provider.</p>
+  </div>
+
+  <script src="{{ url_for('static', filename='script_result.js') }}"></script>
+</body>
+</html>
